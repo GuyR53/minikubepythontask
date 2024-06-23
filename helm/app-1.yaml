@@ -1,0 +1,39 @@
+# Default values for app-1
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+labels:
+  microservice: app-1
+
+replicaCount: 1
+
+image:
+  repository: guydockerhub
+  name: pythonapp
+  tag: v1
+  pullPolicy: IfNotPresent
+
+targetUrl: false
+command: ["python", "/app/microservices_app.py"]
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 1280Mi
+  limits:
+    cpu: 400m
+    memory: 1536Mi
+
+readiness:
+  initialDelay: 200
+  period: 15
+  timeout: 1
+liveness:
+  initialDelay: 200
+  period: 30
+  timeout: 1
+
+service:
+  type: ClusterIP
+  containerPort: 5000
+
+

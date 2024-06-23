@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: {{ .Values.labels.microservice }}
+  name: {{ .Values.labels.microservice }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      service: {{ .Values.labels.microservice }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        service: {{ .Values.labels.microservice }}
+    spec:
+      containers:
+        - name: {{ .Values.labels.microservice }}
+          image: {{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["sh", "-c", "echo Hello Kubernetes! && sleep 3600"]
+          livenessProbe:
+            httpGet:
+              path: /ready
+              port: {{ .Values.service.containerPort }}
+            initialDelaySeconds: {{ .Values.liveness.initialDelay }}
+            periodSeconds: {{ .Values.liveness.period }}
+            timeoutSeconds: {{ .Values.liveness.timeout }}
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: {{ .Values.service.containerPort }}
+            initialDelaySeconds: {{ .Values.readiness.initialDelay }}
+            periodSeconds: {{ .Values.readiness.period }}
+            timeoutSeconds: {{ .Values.readiness.timeout }}
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: "{{ .Values.resources.limits.memory }}"
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: "{{ .Values.resources.requests.memory }}"
+          env:
+            {{- if .Values.targetUrl }}
+            - name: TARGET_URL
+              value: "{{ .Values.targetUrl.url }}"
+            {{- end }}
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 10
