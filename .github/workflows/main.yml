@@ -47,7 +47,7 @@ jobs:
         run: |
           pwd
           ls
-          helm install ${SERVICE_NAME} ./minikubepythontask/helm/ -f ./minikubepythontask/helm/${SERVICE_NAME}.yaml
+          helm install ${SERVICE_NAME} ./helm/ -f ./helm/${SERVICE_NAME}.yaml
         env:
           SERVICE_NAME: ${{ inputs.service_name }}
 
