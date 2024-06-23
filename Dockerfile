@@ -1,7 +1,7 @@
 # Dockerfile
 
 # Base image
-FROM python:3.7
+FROM python:3.8.0-alpine
 
 # Set working directory inside the container
 WORKDIR /app
