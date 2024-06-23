@@ -24,7 +24,7 @@ spec:
         - name: {{ .Values.labels.microservice }}
           image: {{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["sh", "-c", "echo Hello Kubernetes! && sleep 3600"]
+          command: {{ .Values.command }}
           livenessProbe:
             httpGet:
               path: /ready
