@@ -13,7 +13,7 @@ image:
   pullPolicy: IfNotPresent
 
 targetUrl: false
-command: ["python", "/app/numbers_api_app.py]
+command: ["python", "/app/numbers_api_app.py"]
 
 resources:
   requests:
