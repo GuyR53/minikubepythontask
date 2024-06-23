@@ -9,7 +9,7 @@ replicaCount: 1
 image:
   repository: guydockerhub
   name: pythonapp
-  tag: 15
+  tag: 16
   pullPolicy: IfNotPresent
 
 targetUrl: false
@@ -24,12 +24,12 @@ resources:
     memory: 1536Mi
 
 readiness:
-  initialDelay: 200
-  period: 15
+  initialDelay: 1
+  period: 1
   timeout: 1
 liveness:
-  initialDelay: 200
-  period: 30
+  initialDelay: 1
+  period: 1
   timeout: 1
 
 service:
