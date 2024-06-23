@@ -1,7 +1,7 @@
 # Dockerfile
 
 # Base image
-FROM python:3.9-slim
+FROM python:3.7
 
 # Set working directory inside the container
 WORKDIR /app
@@ -13,6 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy both app.py files
 COPY microservices/app.py /app/microservices_app.py
 COPY numbers_api/app.py /app/numbers_api_app.py
+RUN  chmod a+x /app/microservices_app.py
+RUN  chmod a+x /app/numbers_api_app.py
 
 # Expose the port that your app runs on (adjust as needed)
 EXPOSE 5000

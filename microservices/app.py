@@ -23,4 +23,4 @@ def consume_url():
         return Response(str(e), status=500)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
