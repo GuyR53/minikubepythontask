@@ -56,3 +56,4 @@ jobs:
       - name: Wait for Deployment to be Ready
         run: |
           kubectl rollout status deployment/${{ inputs.service_name }}
+          kubectl get po
