@@ -43,15 +43,12 @@ jobs:
           echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
           docker push ${DOCKER_USERNAME}/pythonapp:${{ github.run_number }}
 
-      - name: Configure kubectl for Minikube
+      - name: Deploy to Minikube using Helm
         run: |
-          kubectl config use-context minikube
-
-      - name: Deploy to Minikube
-        run: |
-          helm install ${inputs.service_name} ./minikubepythontask/helm/ -f ./minikubepythontask/helm/${inputs.service_name}.yaml
+          helm install ${SERVICE_NAME} ./minikubepythontask/helm/ -f ./minikubepythontask/helm/${SERVICE_NAME}.yaml
+        env:
+          SERVICE_NAME: ${{ inputs.service_name }}
 
       - name: Wait for Deployment to be Ready
         run: |
           kubectl rollout status deployment/${{ inputs.service_name }}
-
