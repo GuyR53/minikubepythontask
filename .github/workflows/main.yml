@@ -45,6 +45,8 @@ jobs:
 
       - name: Deploy to Minikube using Helm
         run: |
+          pwd
+          ls
           helm install ${SERVICE_NAME} ./minikubepythontask/helm/ -f ./minikubepythontask/helm/${SERVICE_NAME}.yaml
         env:
           SERVICE_NAME: ${{ inputs.service_name }}
