@@ -9,7 +9,7 @@ replicaCount: 1
 image:
   repository: guydockerhub
   name: pythonapp
-  tag: 10
+  tag: 11
   pullPolicy: IfNotPresent
 
 targetUrl: false
