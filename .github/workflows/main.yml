@@ -46,7 +46,6 @@ jobs:
       - name: Update Helm Chart with Image Tag
         run: |
           sed -i "s/tag: [0-9]*/tag: ${GITHUB_RUN_NUMBER}/" ./helm/${{ inputs.service_name }}.yaml
-          cat ./helm/${{ inputs.service_name }}.yaml
       
       - name: Deploy to Minikube using Helm
         run: |
