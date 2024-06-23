@@ -43,6 +43,10 @@ jobs:
           echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
           docker push ${DOCKER_USERNAME}/pythonapp:${{ github.run_number }}
 
+      - name: Update Helm Chart with Image Tag
+        run: |
+          sed -i "s/tag: [0-9]*/tag: ${GITHUB_RUN_NUMBER}/" ./helm/${{ inputs.service_name }}.yaml
+      
       - name: Deploy to Minikube using Helm
         run: |
           helm install ${SERVICE_NAME} ./helm/ -f ./helm/${SERVICE_NAME}.yaml
