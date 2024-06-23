@@ -55,4 +55,3 @@ jobs:
         run: |
           kubectl rollout status deployment/${{ inputs.service_name }}
 
-      # Add steps to run tests against the deployed service(s)
