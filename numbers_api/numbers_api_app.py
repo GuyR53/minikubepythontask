@@ -17,5 +17,10 @@ def get_even_number():
     even_number = random.choice([num for num in range(1, 21) if num % 2 == 0])
     return jsonify({'even_number': even_number})
 
+# Readiness probe endpoint
+@app.route('/ready')
+def readiness_check():
+    return jsonify({'status': 'Ready'})
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

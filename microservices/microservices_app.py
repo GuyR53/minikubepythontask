@@ -22,5 +22,15 @@ def consume_url():
     except requests.exceptions.RequestException as e:
         return Response(str(e), status=500)
 
+
+@app.route('/ready')
+def readiness_check():
+    # Example readiness logic: check if TARGET_URL environment variable is set
+    url = os.getenv('TARGET_URL')
+    if url:
+        return Response('Ready', status=200)
+    else:
+        return Response('Not ready: TARGET_URL environment variable is not set', status=500)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

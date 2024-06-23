@@ -25,9 +25,9 @@ spec:
           image: {{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
-            - "/bin/bash"
+            - "/bin/sh"
             - "-c"
-            - "python3.8 ./microservices_app.py"
+            - "python3.8 {{ .Values.file }}"
           livenessProbe:
             httpGet:
               path: /ready

@@ -9,11 +9,11 @@ replicaCount: 1
 image:
   repository: guydockerhub
   name: pythonapp
-  tag: 11
+  tag: 13
   pullPolicy: IfNotPresent
 
 targetUrl: false
-command: ["python3", "numbers_api_app.py"]
+file: "./numbers_api_app.py"
 
 resources:
   requests:

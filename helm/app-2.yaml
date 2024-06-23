@@ -9,13 +9,13 @@ replicaCount: 1
 image:
   repository: guydockerhub
   name: pythonapp
-  tag: 11
+  tag: 13
   pullPolicy: IfNotPresent
 
 targetUrl:
-  url: "app-2.example.com"
+  url: "https://google.com"
 
-command: ["python3", "microservices_app.py"]
+file: "./microservices_app.py"
 
 
 resources:
