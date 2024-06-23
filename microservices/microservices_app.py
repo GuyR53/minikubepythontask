@@ -2,7 +2,7 @@
 
 import os
 import requests
-from flask import Flask, Response
+from flask import Flask, Response, jsonify
 
 app = Flask(__name__)
 
@@ -23,14 +23,10 @@ def consume_url():
         return Response(str(e), status=500)
 
 
+# Readiness probe endpoint
 @app.route('/ready')
 def readiness_check():
-    # Example readiness logic: check if TARGET_URL environment variable is set
-    url = os.getenv('TARGET_URL')
-    if url:
-        return Response('Ready', status=200)
-    else:
-        return Response('Not ready: TARGET_URL environment variable is not set', status=500)
+    return jsonify({'status': 'Ready'})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
