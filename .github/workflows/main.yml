@@ -49,7 +49,7 @@ jobs:
 
       - name: Deploy to Minikube
         run: |
-          kubectl apply -f ./helm/ helm/${{ inputs.service_name }}.yaml
+          kubectl apply -f ./minikubepythontask/helm/ helm/${{ inputs.service_name }}.yaml
 
       - name: Wait for Deployment to be Ready
         run: |
