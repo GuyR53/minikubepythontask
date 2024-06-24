@@ -6,6 +6,11 @@ on:
       service_name:
         description: 'Service name to deploy to Minikube'
         required: true
+        # Restricting allowed values to 'app-1' or 'app-2'
+        default: 'app-1'
+        options:
+          - 'app-1'
+          - 'app-2'
 
 jobs:
   build-and-deploy:
