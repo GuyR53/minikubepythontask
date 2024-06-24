@@ -32,7 +32,7 @@ jobs:
           minikube start --driver=docker
           minikube addons enable ingress
           minikube_ip=$(minikube ip)
-          echo "$minikube_ip app-1.application.com app-2.application.com" | sudo tee -a /etc/hosts
+          echo "$minikube_ip app-1.odd.application.com app-1.even.application.com app-2.application.com" | sudo tee -a /etc/hosts
           minikube status
           cat /etc/hosts
 
