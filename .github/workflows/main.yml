@@ -70,8 +70,8 @@ jobs:
         run: |
           NODE_PORT=$(kubectl get svc ${SERVICE_NAME} -o=jsonpath='{.spec.ports[0].nodePort}')
           if [ "${SERVICE_NAME}" = "app-1" ]; then
-            curl -sSf http://${SERVICE_NAME}.application.com:${NODE_PORT}/odd
-            curl -sSf http://${SERVICE_NAME}.application.com:${NODE_PORT}/even
+            curl -sSf http://${SERVICE_NAME}.odd.application.com:${NODE_PORT}/odd
+            curl -sSf http://${SERVICE_NAME}.even.application.com:${NODE_PORT}/even
           elif [ "${SERVICE_NAME}" = "app-2" ]; then
             curl -sSf http://${SERVICE_NAME}.application.com:${NODE_PORT}/
           else
