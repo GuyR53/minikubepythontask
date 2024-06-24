@@ -8,6 +8,7 @@ on:
         required: true
         # Restricting allowed values to 'app-1' or 'app-2'
         default: 'app-1'
+        type: choice
         options:
           - 'app-1'
           - 'app-2'
