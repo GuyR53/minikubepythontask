@@ -17,6 +17,7 @@ targetUrl:
 
 file: "./microservices_app.py"
 
+host: app-2.application.com
 
 resources:
   requests:
