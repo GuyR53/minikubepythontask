@@ -15,7 +15,9 @@ image:
 targetUrl: false
 file: "./numbers_api_app.py"
 
-host: app-1.application.com
+
+domain1: app-1.odd-application.com
+domain2: app-1.even-application.com
 
 resources:
   requests:

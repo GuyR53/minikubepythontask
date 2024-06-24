@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.labels.microservice }}-ingress
 spec:
   rules:
-  - host: {{ .Values.host }}
+  - host: {{ .Values.domain1 }}
     http:
       paths:
       - path: /
@@ -14,3 +14,15 @@ spec:
             name: {{ .Values.labels.microservice }}
             port:
               number: {{ .Values.service.containerPort }}
+  {{- if .Values.domain2 }}
+  - host: {{ .Values.domain2 }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.labels.microservice }}
+            port:
+              number: {{ .Values.service.containerPort }}
+  {{- end }}
