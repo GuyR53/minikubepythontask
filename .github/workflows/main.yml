@@ -59,3 +59,17 @@ jobs:
       - name: Wait for Deployment to be Ready
         run: |
           kubectl rollout status deployment/${{ inputs.service_name }}
+
+      - name: Test ${SERVICE_NAME} path
+        run: |
+          if [ "${SERVICE_NAME}" = "app-1" ]; then
+            curl -sSf http://${SERVICE_NAME}.application.com/odd
+            curl -sSf http://${SERVICE_NAME}.application.com/even
+          elif [ "${SERVICE_NAME}" = "app-2" ]; then
+            curl -sSf http://${SERVICE_NAME}.application.com/
+          else
+            echo "Unsupported service name: ${SERVICE_NAME}"
+            exit 1
+          fi
+        env:
+          SERVICE_NAME: ${{ inputs.service_name }}
