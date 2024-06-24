@@ -37,7 +37,7 @@ liveness:
   timeout: 2
 
 service:
-  type: ClusterIP
+  type: NodePort
   containerPort: 5000
 
 
